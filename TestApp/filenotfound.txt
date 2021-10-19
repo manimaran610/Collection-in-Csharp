@@ -1,0 +1,61 @@
+using System.IO;
+
+namespace TestApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StreamReader streamreader = null;
+            try
+            {
+                streamreader = new StreamReader(@"E:/Data1.txt");
+                Console.WriteLine(streamreader.ReadToEnd());
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Data.txt is not found!");
+            }
+            catch(DirectoryNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {  if(streamreader != null)
+                {
+                    streamreader.Dispose();
+                }
+                
+            }
+
+           
+        }
+
+
+        /// /////Null reference exception ///////////////
+         int[] arr = new int[10] {1,2,3,1,2,4,5,6,5,4};
+            string name = null;
+            try
+            {
+
+                Console.WriteLine("Enter the number to add");
+                
+                int i = int.Parse(Console.ReadLine());
+                Console.WriteLine(name.Length);    //string null is referred to the method
+                
+                Console.WriteLine(arr[i]);
+             
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
